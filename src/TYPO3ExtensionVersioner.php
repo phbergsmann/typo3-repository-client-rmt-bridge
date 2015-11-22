@@ -4,7 +4,7 @@ use Liip\RMT\Context;
 use Liip\RMT\Information\InformationRequest;
 use Liip\RMT\Information\InteractiveQuestion;
 
-class Versioner extends BaseAction
+class TYPO3ExtensionVersioner extends BaseAction
 {
 	public function execute()
 	{
