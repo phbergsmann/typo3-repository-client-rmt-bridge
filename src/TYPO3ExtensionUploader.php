@@ -14,21 +14,26 @@ class TYPO3ExtensionUploader extends BaseAction
 
 	public function execute() {
 		$directory = trim(shell_exec('pwd'));
-
-		$usernameIr = new InformationRequest('ter-username', array('type' => 'text'));
-		$username = new InteractiveQuestion($usernameIr);
-
-		$passwordIr = new InformationRequest('ter-password', array('type' => 'text'));
-		$password = new InteractiveQuestion($passwordIr);
-
-		$commentIr = new InformationRequest('ter-comment', array(
-				'type' => 'text',
-				'default' => 'Release of version ' . Context::getParam('new-version')
-			));
-		$comment = new InteractiveQuestion($commentIr);
+		$username = Context::get('information-collector')->getValueFor('ter-username');
+		$password = Context::get('information-collector')->getValueFor('ter-password');
+		$comment = Context::get('information-collector')->getValueFor('ter-comment');
 
 		$uploader = new \NamelessCoder\TYPO3RepositoryClient\Uploader();
 		$uploader->upload($directory, $username, $password, $comment);
+	}
+
+	public function getInformationRequests()
+	{
+		$ir = array(
+			new InformationRequest('ter-username', array('type' => 'text')),
+			new InformationRequest('ter-password', array('type' => 'text')),
+			new InformationRequest('ter-comment', array(
+				'type' => 'text',
+				'default' => 'Release of version ' . Context::getParam('new-version')
+			))
+		);
+
+		return $ir;
 	}
 }
 ?>

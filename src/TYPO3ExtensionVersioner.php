@@ -23,7 +23,16 @@ class TYPO3ExtensionVersioner extends BaseAction
 		try {
 			$version[1] = Context::getParam('stability');
 		} catch(\InvalidArgumentException $e) {
-			$ir = new InformationRequest('stability', array(
+			$version[1] = Context::get('information-collector')->getValueFor('stability');
+		}
+
+		$versioner->write($directory, $version[0], $version[1]);
+	}
+
+	public function getInformationRequests()
+	{
+		$ir = array();
+		$ir[] = new InformationRequest('stability', array(
 				'type' => 'choice',
 				'choices' => array(
 					\NamelessCoder\TYPO3RepositoryClient\Versioner::STABILITY_STABLE,
@@ -34,12 +43,8 @@ class TYPO3ExtensionVersioner extends BaseAction
 				),
 				'default' => \NamelessCoder\TYPO3RepositoryClient\Versioner::STABILITY_STABLE,
 			));
-			$question = new InteractiveQuestion($ir);
 
-			$version[1] = Context::get('output')->askQuestion($question);
-		}
-
-		$versioner->write($directory, $version[0], $version[1]);
+		return $ir;
 	}
 }
 ?>
