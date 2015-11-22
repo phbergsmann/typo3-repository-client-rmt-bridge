@@ -1,6 +1,4 @@
 <?php
-namespace PhBergsmann\Typo3RepositoryClientRmtBridge\Action;
-
 use Liip\RMT\Action\BaseAction;
 use Liip\RMT\Context;
 use Liip\RMT\Information\InformationRequest;
