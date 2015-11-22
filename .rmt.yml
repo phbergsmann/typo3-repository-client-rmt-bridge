@@ -1,0 +1,19 @@
+_default:
+    vcs: git
+    prerequisites: [working-copy-check]
+    version-generator: simple
+    version-persister:
+        name: vcs-tag
+        tag-prefix: "{branch-name}_"
+    post-release-actions: [vcs-publish]
+
+master:
+    prerequisites: [working-copy-check, display-last-changes]
+    pre-release-actions:
+        changelog-update:
+            format: semantic
+            file: CHANGELOG.md
+            dump-commits: true
+        vcs-commit: ~
+    version-generator: semantic
+    version-persister: vcs-tag
