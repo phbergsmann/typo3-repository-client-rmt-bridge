@@ -1,14 +1,19 @@
 {
-    "name": "phbergsmann/typo3-repository-client-rmt-bridge",
-    "require": {
-        "namelesscoder/typo3-repository-client": "1.1.x",
-        "liip/rmt": "1.1.x"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Philipp Bergsmann",
-            "email": "me@ph-bergsmann.com"
-        }
-    ]
+	"name": "phbergsmann/typo3-repository-client-rmt-bridge",
+	"require": {
+		"namelesscoder/typo3-repository-client": "1.1.x",
+		"liip/rmt": "1.1.x"
+	},
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Philipp Bergsmann",
+			"email": "me@ph-bergsmann.com"
+		}
+	],
+	"autoload": {
+		"psr-0": {
+			"PhBergsmann": "src"
+		}
+	}
 }
