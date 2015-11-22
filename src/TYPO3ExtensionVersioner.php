@@ -6,6 +6,11 @@ use Liip\RMT\Information\InteractiveQuestion;
 
 class TYPO3ExtensionVersioner extends BaseAction
 {
+	public function getTitle()
+	{
+		return 'TYPO3 Extension stability';
+	}
+
 	public function execute()
 	{
 		$versioner = new \NamelessCoder\TYPO3RepositoryClient\Versioner();
