@@ -29,7 +29,7 @@ class TYPO3ExtensionUploader extends BaseAction
 			new InformationRequest('ter-password', array('type' => 'text')),
 			new InformationRequest('ter-comment', array(
 				'type' => 'text',
-				'default' => 'Release of version ' . Context::getParam('new-version')
+				'default' => 'Release of new version'
 			))
 		);
 
